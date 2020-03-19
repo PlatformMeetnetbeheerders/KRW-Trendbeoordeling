@@ -1,0 +1,43 @@
+function tube_trend = createTubeTrendTable()
+% createTubeTrendTable - create table with KRW trend assesment per
+%                        monitoring tube
+%
+% OUTPUT
+%  tube_trend:
+%    Table, KRW trend assesment per monitoring tube
+%
+% Written by Jos von Asmuth (Trefoil Hydrology) d.d.: 19-Mar-2020.
+% Published by Platform Meetnetbeheerders, under the CC-BY Public License (Creative Commons Attribution 4.0 International)
+
+% Create cellarray
+c = {...
+  'NITGCode'             '[String]'         {''}  ; ... 
+  'FilterNo'             '[Integer]'         NaN  ; ... 
+  'Grondwaterlichaam'    '[Categorical]'    {''}  ; ...
+  'Provincie'            '[Categorical]'    {''}  ; ...   
+  'XCoordinate'          '[m]'               NaN  ; ...   
+  'YCoordinate'          '[m]'               NaN  ; ...   
+  'isFilterFound'        '[Boolean]'        'Yes' ; ...     % Filter is found and present in trend data / men-files = 'Yes'
+  'isFilterUnique'       '[Boolean]'        'Yes' ; ...     % Filter in men-file is unique = 'Yes', duplicate = 'No' (filter duplicates may have version conflicts)
+  'isResultUnique'       '[Boolean]'        'Yes' ; ...     % Filter-Trend results are unique = 'Yes', results or duplicate filters with version conflict = 'No' (including trend = NaN)
+  'hasCorrectPeriod'     '[Boolean]'         '' ; ...     % Filter has data in correct Period / Trend_M = 'Yes'  
+  'hasModelResult'       '[Boolean]'         '' ; ...     % Filter has model results / Trend_B = 'Yes'  
+  'StartMeas'            '[MatlabDate]'      NaN  ; ...     
+  'EndMeas'              '[MatlabDate]'      NaN  ; ... 
+  'TrendA'               '[cm]'              NaN  ; ... 
+  'ConfIntTrendA'        '[cm]'              NaN  ; ...   
+  'TrendB'               '[cm]'              NaN  ; ... 
+  'ConfIntTrendB'        '[cm]'              NaN  ; ...
+  'isTrendASignif'       '[Boolean]'         ''  ; ...     % Filter has model results / Trend_R = 'Yes'  
+  'isTrendBSignif'       '[Boolean]'         ''  ; ...      % Filter has model results / Trend_R = 'Yes'  
+  'PrecM0'               '[Boolean]'         NaN ; ...     % Filter has model results / Trend_B = 'Yes'  
+  'PrecM0Std'            '[Boolean]'         NaN ; ...     % Filter has model results / Trend_B = 'Yes' 
+  'EvapFctr'             '[Boolean]'         NaN ; ...     % Filter has model results / Trend_B = 'Yes'  
+  'EvapFctrStd'          '[Boolean]'         NaN ; ...     % Filter has model results / Trend_B = 'Yes'   
+  %'hasPassedSeriesQC'    '[Boolean]'         '' ; ...     % KRW_point has passed QC-check measurements = 'Yes' 
+  'hasPassedModelQC'     '[Boolean]'         '' };     % KRW_point has passed QC-check model = 'Yes' 
+
+
+% Convert to table
+tube_trend = hymonCell2Table( c);
+end
